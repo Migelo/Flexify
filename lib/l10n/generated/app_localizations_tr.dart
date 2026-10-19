@@ -724,6 +724,12 @@ class AppLocalizationsTr extends AppLocalizations {
   String get useBodyWeight => 'Vücut ağırlığını kullan';
 
   @override
+  String get weightStep => 'Ağırlık adımı';
+
+  @override
+  String get useAutomaticWeightStep => 'Otomatik adımı kullan';
+
+  @override
   String get noWeightEnteredYet => 'Henüz ağırlık girilmedi';
 
   @override

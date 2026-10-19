@@ -1,4 +1,6 @@
 import 'package:drift/drift.dart' hide Column;
+import 'package:flexify/constants.dart';
+import 'package:flexify/database/body_weight_repository.dart';
 import 'package:flexify/database/database.dart';
 import 'package:flexify/database/exercise_set_repository.dart';
 import 'package:flexify/l10n/l10n.dart';
@@ -36,18 +38,23 @@ class ExerciseModal extends StatefulWidget {
 class _ExerciseModalState extends State<ExerciseModal> {
   final _max = TextEditingController();
   final _warmup = TextEditingController();
+  final _weightStep = TextEditingController();
   bool _timers = true;
+  String _unit = 'kg';
 
   @override
   void dispose() {
     _max.dispose();
     _warmup.dispose();
+    _weightStep.dispose();
     super.dispose();
   }
 
   @override
   void initState() {
     super.initState();
+
+    _loadExercise();
 
     (db.planExercises.select()
           ..where((u) => u.id.equals(widget.planExerciseId))
@@ -68,6 +75,41 @@ class _ExerciseModalState extends State<ExerciseModal> {
         });
   }
 
+  Future<void> _loadExercise() async {
+    final exercise =
+        await (db.exercises.select()
+              ..where((u) => u.id.equals(widget.exerciseId)))
+            .getSingle();
+    if (!mounted) return;
+    setState(() {
+      _unit = exercise.displayUnit;
+    });
+    _weightStep.text = toString(
+      weightStep(exercise.name, _unit, stepKg: exercise.weightStepKg),
+    );
+  }
+
+  bool get _isWeightUnit => _unit == 'kg' || _unit == 'lb' || _unit == 'stone';
+
+  Future<void> _updateWeightStep(double? stepKg) async {
+    await (db.exercises.update()..where((u) => u.id.equals(widget.exerciseId)))
+        .write(ExercisesCompanion(weightStepKg: Value(stepKg)));
+  }
+
+  void changeWeightStep(String value) {
+    final parsed = double.tryParse(value);
+    if (parsed == null || parsed <= 0) {
+      _updateWeightStep(null);
+      return;
+    }
+    _updateWeightStep(toKg(_unit, parsed));
+  }
+
+  void resetWeightStep() {
+    _updateWeightStep(null);
+    _weightStep.text = toString(weightStep(widget.exerciseName, _unit));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Wrap(
@@ -82,6 +124,9 @@ class _ExerciseModalState extends State<ExerciseModal> {
             ).context;
             final maxController = TextEditingController(text: _max.text);
             final warmupCtrl = TextEditingController(text: _warmup.text);
+            final weightStepCtrl = TextEditingController(
+              text: _weightStep.text,
+            );
             var timers = _timers;
             Navigator.pop(context);
 
@@ -139,6 +184,31 @@ class _ExerciseModalState extends State<ExerciseModal> {
                             ),
                           ),
                         ),
+                        if (_isWeightUnit) ...[
+                          const SizedBox(height: 16),
+                          TextField(
+                            controller: weightStepCtrl,
+                            keyboardType: const TextInputType.numberWithOptions(
+                              decimal: true,
+                            ),
+                            onTap: () => selectAll(weightStepCtrl),
+                            onChanged: changeWeightStep,
+                            decoration: InputDecoration(
+                              labelText:
+                                  '${dialogContext.l10n.weightStep} (${displayMeasurementUnit(dialogContext.l10n, _unit)})',
+                              border: const OutlineInputBorder(),
+                              suffixIcon: IconButton(
+                                tooltip:
+                                    dialogContext.l10n.useAutomaticWeightStep,
+                                icon: const Icon(Icons.restart_alt),
+                                onPressed: () {
+                                  resetWeightStep();
+                                  weightStepCtrl.text = _weightStep.text;
+                                },
+                              ),
+                            ),
+                          ),
+                        ],
                       ],
                     ),
                   ),
@@ -154,6 +224,7 @@ class _ExerciseModalState extends State<ExerciseModal> {
             );
             maxController.dispose();
             warmupCtrl.dispose();
+            weightStepCtrl.dispose();
           },
         ),
         if (widget.hasData)

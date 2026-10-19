@@ -728,6 +728,12 @@ class AppLocalizationsUk extends AppLocalizations {
   String get useBodyWeight => 'Використовувати вагу тіла';
 
   @override
+  String get weightStep => 'Крок ваги';
+
+  @override
+  String get useAutomaticWeightStep => 'Використовувати автоматичний крок';
+
+  @override
   String get noWeightEnteredYet => 'Вагу ще не введено';
 
   @override

@@ -250,6 +250,8 @@
   "inclinePercent": "坡度 %",
   "weightWithUnit": "重量 ({unit})",
   "useBodyWeight": "使用自重",
+  "weightStep": "重量步进",
+  "useAutomaticWeightStep": "使用自动步进",
   "noWeightEnteredYet": "尚未输入重量",
   "notesLabel": "备注",
   "swapWorkout": "替换训练",

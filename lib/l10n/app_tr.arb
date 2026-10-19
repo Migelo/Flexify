@@ -250,6 +250,8 @@
   "inclinePercent": "Eğim %",
   "weightWithUnit": "Ağırlık ({unit})",
   "useBodyWeight": "Vücut ağırlığını kullan",
+  "weightStep": "Ağırlık adımı",
+  "useAutomaticWeightStep": "Otomatik adımı kullan",
   "noWeightEnteredYet": "Henüz ağırlık girilmedi",
   "notesLabel": "Notlar",
   "swapWorkout": "Antrenmanı Değiştir",

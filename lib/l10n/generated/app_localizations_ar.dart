@@ -720,6 +720,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get useBodyWeight => 'استخدام وزن الجسم';
 
   @override
+  String get weightStep => 'خطوة الوزن';
+
+  @override
+  String get useAutomaticWeightStep => 'استخدام الخطوة التلقائية';
+
+  @override
   String get noWeightEnteredYet => 'لم يتم إدخال وزن بعد';
 
   @override

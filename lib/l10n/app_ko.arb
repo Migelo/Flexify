@@ -250,6 +250,8 @@
   "inclinePercent": "경사 %",
   "weightWithUnit": "중량 ({unit})",
   "useBodyWeight": "체중 사용",
+  "weightStep": "무게 단계",
+  "useAutomaticWeightStep": "자동 단계 사용",
   "noWeightEnteredYet": "아직 중량을 입력하지 않았습니다",
   "notesLabel": "메모",
   "swapWorkout": "운동 교체",

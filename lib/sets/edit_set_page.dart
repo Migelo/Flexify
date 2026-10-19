@@ -102,6 +102,7 @@ class _EditSetPageState extends State<EditSetPage> {
   var _categoryCtrl = TextEditingController();
   DateTime _created = DateTime.now().toLocal();
   TextEditingController? _nameCtrl;
+  double? _weightStepKg;
   List<String> _options = [];
   int? restMs;
   String? _image;
@@ -123,6 +124,7 @@ class _EditSetPageState extends State<EditSetPage> {
       if (!mounted) return;
       return setState(() {
         _name = option;
+        _weightStepKg = definition?.weightStepKg;
         if (definition != null) {
           _cardio = definition.kind == 'cardio';
           _unit = definition.displayUnit;
@@ -137,6 +139,7 @@ class _EditSetPageState extends State<EditSetPage> {
     }
 
     if (!mounted) return;
+    unawaited(_loadWeightStep(option));
     if (showBodyWeight) {
       final bodyWeight = await getLatestBodyWeight(db);
       if (!mounted) return;
@@ -337,7 +340,7 @@ class _EditSetPageState extends State<EditSetPage> {
     return StepperField(
       controller: _weight,
       labelText: context.l10n.weightWithUnit(_unit),
-      step: weightStep(_name, _unit),
+      step: weightStep(_name, _unit, stepKg: _weightStepKg),
       onFieldSubmitted: (value) => save(),
       onChanged: (value) {
         _markDirty();
@@ -738,10 +741,19 @@ class _EditSetPageState extends State<EditSetPage> {
 
     updateFields(widget.exerciseSet, formatOrm: false, rebuild: false);
     _created = widget.exerciseSet.created;
+    unawaited(_loadWeightStep(widget.exerciseSet.name));
 
     getExerciseNames().then((names) {
       if (!mounted) return;
       _options = names;
+    });
+  }
+
+  Future<void> _loadWeightStep(String name) async {
+    final definition = await getExerciseByName(name);
+    if (!mounted) return;
+    setState(() {
+      _weightStepKg = definition?.weightStepKg;
     });
   }
 

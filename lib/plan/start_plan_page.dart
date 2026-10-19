@@ -444,10 +444,11 @@ class _StartPlanPageState extends State<StartPlanPage>
     AsyncSnapshot<List<PlanExerciseEntry>> snapshot,
     List<GymCount> counts,
   ) {
-    final exerciseName =
+    final exercise =
         snapshot.data!.isNotEmpty && _selected < snapshot.data!.length
-        ? snapshot.data![_selected].exercise.name
-        : '';
+        ? snapshot.data![_selected].exercise
+        : null;
+    final exerciseName = exercise?.name ?? '';
     final showNotes = context.read<Setting>().showNotes;
     final hasNextField = _cardio || showNotes;
 
@@ -455,7 +456,7 @@ class _StartPlanPageState extends State<StartPlanPage>
       controller: _weight,
       focusNode: _weightFocus,
       labelText: context.l10n.weightWithUnit(_unit),
-      step: weightStep(exerciseName, _unit),
+      step: weightStep(exerciseName, _unit, stepKg: exercise?.weightStepKg),
       suffixIcon: Selector<Setting, bool>(
         selector: (context, settings) => settings.showBodyWeight,
         builder: (context, showBodyWeight, child) => Visibility(

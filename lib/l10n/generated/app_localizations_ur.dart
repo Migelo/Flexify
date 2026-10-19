@@ -728,6 +728,12 @@ class AppLocalizationsUr extends AppLocalizations {
   String get useBodyWeight => 'جسمانی وزن استعمال کریں';
 
   @override
+  String get weightStep => 'وزن کا قدم';
+
+  @override
+  String get useAutomaticWeightStep => 'خودکار قدم استعمال کریں';
+
+  @override
   String get noWeightEnteredYet => 'ابھی کوئی وزن درج نہیں کیا گیا';
 
   @override

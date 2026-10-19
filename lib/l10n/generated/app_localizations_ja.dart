@@ -707,6 +707,12 @@ class AppLocalizationsJa extends AppLocalizations {
   String get useBodyWeight => '自重を使用';
 
   @override
+  String get weightStep => '重量ステップ';
+
+  @override
+  String get useAutomaticWeightStep => '自動ステップを使用';
+
+  @override
   String get noWeightEnteredYet => '重量はまだ入力されていません';
 
   @override

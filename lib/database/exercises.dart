@@ -15,6 +15,7 @@ class Exercises extends Table {
   )();
   TextColumn get image => text().nullable()();
   IntColumn get defaultRestDurationMs => integer().nullable()();
+  RealColumn get weightStepKg => real().nullable()();
   TextColumn get notes => text().nullable()();
   TextColumn get graphMetric =>
       text().withDefault(const Constant('bestWeight'))();

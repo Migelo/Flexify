@@ -12,6 +12,12 @@ double displayLoad(String unit, double? loadKg) {
   };
 }
 
+/// Converts a stored weight step in kilograms to the display unit.
+double displayStep(String unit, double stepKg) {
+  final value = displayLoad(unit, stepKg);
+  return (value * 100).roundToDouble() / 100;
+}
+
 /// Converts a displayed load to kilograms.
 double? loadKg(String unit, double value) {
   return switch (unit) {

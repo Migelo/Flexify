@@ -250,6 +250,8 @@
   "inclinePercent": "傾斜 %",
   "weightWithUnit": "重量 ({unit})",
   "useBodyWeight": "自重を使用",
+  "weightStep": "重量ステップ",
+  "useAutomaticWeightStep": "自動ステップを使用",
   "noWeightEnteredYet": "重量はまだ入力されていません",
   "notesLabel": "メモ",
   "swapWorkout": "トレーニングを入れ替え",

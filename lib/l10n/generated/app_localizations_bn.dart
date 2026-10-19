@@ -726,6 +726,12 @@ class AppLocalizationsBn extends AppLocalizations {
   String get useBodyWeight => 'শরীরের ওজন ব্যবহার করুন';
 
   @override
+  String get weightStep => 'ওজনের ধাপ';
+
+  @override
+  String get useAutomaticWeightStep => 'স্বয়ংক্রিয় ধাপ ব্যবহার করুন';
+
+  @override
   String get noWeightEnteredYet => 'এখনো কোনো ওজন লেখা হয়নি';
 
   @override

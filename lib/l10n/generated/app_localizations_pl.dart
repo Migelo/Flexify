@@ -731,6 +731,12 @@ class AppLocalizationsPl extends AppLocalizations {
   String get useBodyWeight => 'Użyj masy ciała';
 
   @override
+  String get weightStep => 'Krok ciężaru';
+
+  @override
+  String get useAutomaticWeightStep => 'Użyj automatycznego kroku';
+
+  @override
   String get noWeightEnteredYet => 'Nie wprowadzono jeszcze ciężaru';
 
   @override

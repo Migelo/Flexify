@@ -723,6 +723,12 @@ class AppLocalizationsHi extends AppLocalizations {
   String get useBodyWeight => 'शरीर का वज़न इस्तेमाल करें';
 
   @override
+  String get weightStep => 'वजन चरण';
+
+  @override
+  String get useAutomaticWeightStep => 'स्वचालित चरण का उपयोग करें';
+
+  @override
   String get noWeightEnteredYet => 'अभी कोई वज़न दर्ज नहीं किया गया';
 
   @override

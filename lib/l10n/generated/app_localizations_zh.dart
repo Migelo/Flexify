@@ -705,6 +705,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get useBodyWeight => '使用自重';
 
   @override
+  String get weightStep => '重量步进';
+
+  @override
+  String get useAutomaticWeightStep => '使用自动步进';
+
+  @override
   String get noWeightEnteredYet => '尚未输入重量';
 
   @override
@@ -2189,6 +2195,12 @@ class AppLocalizationsZhCn extends AppLocalizationsZh {
   String get useBodyWeight => '使用自重';
 
   @override
+  String get weightStep => '重量步进';
+
+  @override
+  String get useAutomaticWeightStep => '使用自动步进';
+
+  @override
   String get noWeightEnteredYet => '尚未输入重量';
 
   @override
@@ -3671,6 +3683,12 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
 
   @override
   String get useBodyWeight => '使用自重';
+
+  @override
+  String get weightStep => '重量步進';
+
+  @override
+  String get useAutomaticWeightStep => '使用自動步進';
 
   @override
   String get noWeightEnteredYet => '尚未輸入重量';

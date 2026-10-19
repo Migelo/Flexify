@@ -721,6 +721,12 @@ class AppLocalizationsVi extends AppLocalizations {
   String get useBodyWeight => 'Sử dụng trọng lượng cơ thể';
 
   @override
+  String get weightStep => 'Bước cân nặng';
+
+  @override
+  String get useAutomaticWeightStep => 'Dùng bước tự động';
+
+  @override
   String get noWeightEnteredYet => 'Chưa nhập cân nặng';
 
   @override

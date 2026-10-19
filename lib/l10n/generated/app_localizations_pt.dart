@@ -728,6 +728,12 @@ class AppLocalizationsPt extends AppLocalizations {
   String get useBodyWeight => 'Usar peso corporal';
 
   @override
+  String get weightStep => 'Passo de peso';
+
+  @override
+  String get useAutomaticWeightStep => 'Usar o passo automático';
+
+  @override
   String get noWeightEnteredYet => 'Ainda não foi introduzido nenhum peso';
 
   @override
@@ -2299,6 +2305,12 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
   String get useBodyWeight => 'Usar peso corporal';
 
   @override
+  String get weightStep => 'Passo de peso';
+
+  @override
+  String get useAutomaticWeightStep => 'Usar o passo automático';
+
+  @override
   String get noWeightEnteredYet => 'Nenhum peso informado ainda';
 
   @override
@@ -3866,6 +3878,12 @@ class AppLocalizationsPtPt extends AppLocalizationsPt {
 
   @override
   String get useBodyWeight => 'Usar peso corporal';
+
+  @override
+  String get weightStep => 'Passo de peso';
+
+  @override
+  String get useAutomaticWeightStep => 'Usar o passo automático';
 
   @override
   String get noWeightEnteredYet => 'Ainda não foi introduzido nenhum peso';

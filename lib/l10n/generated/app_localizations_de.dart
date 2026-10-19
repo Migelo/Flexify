@@ -730,6 +730,12 @@ class AppLocalizationsDe extends AppLocalizations {
   String get useBodyWeight => 'Körpergewicht verwenden';
 
   @override
+  String get weightStep => 'Gewichtsschritt';
+
+  @override
+  String get useAutomaticWeightStep => 'Automatischen Schritt verwenden';
+
+  @override
   String get noWeightEnteredYet => 'Noch kein Gewicht eingetragen';
 
   @override

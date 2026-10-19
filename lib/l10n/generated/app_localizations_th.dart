@@ -721,6 +721,12 @@ class AppLocalizationsTh extends AppLocalizations {
   String get useBodyWeight => 'ใช้น้ำหนักตัว';
 
   @override
+  String get weightStep => 'ขั้นน้ำหนัก';
+
+  @override
+  String get useAutomaticWeightStep => 'ใช้ขั้นตอนอัตโนมัติ';
+
+  @override
   String get noWeightEnteredYet => 'ยังไม่ได้ป้อนน้ำหนัก';
 
   @override

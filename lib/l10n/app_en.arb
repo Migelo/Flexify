@@ -963,6 +963,14 @@
   "@useBodyWeight": {
     "description": "Tooltip for filling a set with the recorded bodyweight."
   },
+  "weightStep": "Weight step",
+  "@weightStep": {
+    "description": "Label for the weight increment step of an exercise."
+  },
+  "useAutomaticWeightStep": "Use automatic step",
+  "@useAutomaticWeightStep": {
+    "description": "Tooltip for clearing a custom weight step."
+  },
   "noWeightEnteredYet": "No weight entered yet",
   "@noWeightEnteredYet": {
     "description": "Message shown when body weight cannot be used because no weight has been recorded."

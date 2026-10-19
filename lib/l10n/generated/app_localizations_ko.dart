@@ -708,6 +708,12 @@ class AppLocalizationsKo extends AppLocalizations {
   String get useBodyWeight => '체중 사용';
 
   @override
+  String get weightStep => '무게 단계';
+
+  @override
+  String get useAutomaticWeightStep => '자동 단계 사용';
+
+  @override
   String get noWeightEnteredYet => '아직 중량을 입력하지 않았습니다';
 
   @override

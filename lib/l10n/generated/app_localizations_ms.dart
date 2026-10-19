@@ -726,6 +726,12 @@ class AppLocalizationsMs extends AppLocalizations {
   String get useBodyWeight => 'Gunakan berat badan';
 
   @override
+  String get weightStep => 'Langkah Berat';
+
+  @override
+  String get useAutomaticWeightStep => 'Guna langkah automatik';
+
+  @override
   String get noWeightEnteredYet => 'Belum ada berat yang dimasukkan';
 
   @override

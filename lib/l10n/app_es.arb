@@ -250,6 +250,8 @@
   "inclinePercent": "Inclinación %",
   "weightWithUnit": "Peso ({unit})",
   "useBodyWeight": "Usar peso corporal",
+  "weightStep": "Paso de peso",
+  "useAutomaticWeightStep": "Usar el paso automático",
   "noWeightEnteredYet": "Aún no se ha registrado ningún peso",
   "notesLabel": "Notas",
   "swapWorkout": "Cambiar entrenamiento",

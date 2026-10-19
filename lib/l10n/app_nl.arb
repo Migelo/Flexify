@@ -250,6 +250,8 @@
   "inclinePercent": "Helling %",
   "weightWithUnit": "Gewicht ({unit})",
   "useBodyWeight": "Lichaamsgewicht gebruiken",
+  "weightStep": "Gewichtsstap",
+  "useAutomaticWeightStep": "Automatische stap gebruiken",
   "noWeightEnteredYet": "Nog geen gewicht ingevoerd",
   "notesLabel": "Notities",
   "swapWorkout": "Training wisselen",

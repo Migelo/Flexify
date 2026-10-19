@@ -250,6 +250,8 @@
   "inclinePercent": "Nachylenie %",
   "weightWithUnit": "Ciężar ({unit})",
   "useBodyWeight": "Użyj masy ciała",
+  "weightStep": "Krok ciężaru",
+  "useAutomaticWeightStep": "Użyj automatycznego kroku",
   "noWeightEnteredYet": "Nie wprowadzono jeszcze ciężaru",
   "notesLabel": "Notatki",
   "swapWorkout": "Zamień trening",

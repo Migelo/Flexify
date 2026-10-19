@@ -722,6 +722,12 @@ class AppLocalizationsFa extends AppLocalizations {
   String get useBodyWeight => 'استفاده از وزن بدن';
 
   @override
+  String get weightStep => 'گام وزن';
+
+  @override
+  String get useAutomaticWeightStep => 'استفاده از گام خودکار';
+
+  @override
   String get noWeightEnteredYet => 'هنوز وزنی وارد نشده';
 
   @override

@@ -1,5 +1,6 @@
 import 'package:drift/drift.dart';
 import 'package:flexify/database/database.dart';
+import 'package:flexify/database/exercise_set_repository.dart';
 import 'package:flexify/main.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -72,10 +73,11 @@ String formatDisplayPercent(
   int maxDigits = 2,
 }) {
   final locale = _localeName(context);
-  final formatter = _percentFormat.putIfAbsent((
-    locale,
-    maxDigits,
-  ), () => NumberFormat.percentPattern(locale)..maximumFractionDigits = maxDigits);
+  final formatter = _percentFormat.putIfAbsent(
+    (locale, maxDigits),
+    () =>
+        NumberFormat.percentPattern(locale)..maximumFractionDigits = maxDigits,
+  );
   return formatter.format(ratio);
 }
 
@@ -157,7 +159,11 @@ void selectAll(TextEditingController controller) => controller.selection =
 /// - Dumbbell exercises: 2 kg / 5 lb
 /// - Cable/machine exercises (weight stacks): 5 kg / 10 lb
 /// - Barbell/default: 2.5 kg / 5 lb
-double weightStep(String name, String unit) {
+///
+/// A per-exercise [stepKg] value replaces the automatic step.
+double weightStep(String name, String unit, {double? stepKg}) {
+  if (stepKg != null) return displayStep(unit, stepKg);
+
   final lower = name.toLowerCase();
   final isLb = unit == 'lb' || unit == 'stone';
 

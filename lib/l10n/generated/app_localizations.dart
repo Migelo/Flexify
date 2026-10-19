@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:intl/intl.dart' as intl;
 
 import 'app_localizations_ar.dart';
 import 'app_localizations_bn.dart';
@@ -82,7 +83,8 @@ import 'app_localizations_zh.dart';
 /// be consistent with the languages listed in the AppLocalizations.supportedLocales
 /// property.
 abstract class AppLocalizations {
-  AppLocalizations(String locale) : localeName = locale.replaceAll('-', '_');
+  AppLocalizations(String locale)
+    : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -1461,6 +1463,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Use body weight'**
   String get useBodyWeight;
+
+  /// Label for the weight increment step of an exercise.
+  ///
+  /// In en, this message translates to:
+  /// **'Weight step'**
+  String get weightStep;
+
+  /// Tooltip for clearing a custom weight step.
+  ///
+  /// In en, this message translates to:
+  /// **'Use automatic step'**
+  String get useAutomaticWeightStep;
 
   /// Message shown when body weight cannot be used because no weight has been recorded.
   ///

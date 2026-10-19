@@ -954,6 +954,14 @@
   "@useBodyWeight": {
     "description": "Tooltip for filling a set with the recorded bodyweight."
   },
+  "weightStep": "ขั้นน้ำหนัก",
+  "@weightStep": {
+    "description": "Label for the weight increment step of an exercise."
+  },
+  "useAutomaticWeightStep": "ใช้ขั้นตอนอัตโนมัติ",
+  "@useAutomaticWeightStep": {
+    "description": "Tooltip for clearing a custom weight step."
+  },
   "noWeightEnteredYet": "ยังไม่ได้ป้อนน้ำหนัก",
   "@noWeightEnteredYet": {
     "description": "Message shown when body weight cannot be used because no weight has been recorded."

@@ -963,6 +963,14 @@
   "@useBodyWeight": {
     "description": "Tooltip for filling a set with the recorded bodyweight."
   },
+  "weightStep": "Крок ваги",
+  "@weightStep": {
+    "description": "Label for the weight increment step of an exercise."
+  },
+  "useAutomaticWeightStep": "Використовувати автоматичний крок",
+  "@useAutomaticWeightStep": {
+    "description": "Tooltip for clearing a custom weight step."
+  },
   "noWeightEnteredYet": "Вагу ще не введено",
   "@noWeightEnteredYet": {
     "description": "Message shown when body weight cannot be used because no weight has been recorded."

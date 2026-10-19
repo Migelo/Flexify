@@ -565,6 +565,17 @@ class $ExercisesTable extends Exercises
     type: DriftSqlType.int,
     requiredDuringInsert: false,
   );
+  static const VerificationMeta _weightStepKgMeta = const VerificationMeta(
+    'weightStepKg',
+  );
+  @override
+  late final GeneratedColumn<double> weightStepKg = GeneratedColumn<double>(
+    'weight_step_kg',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
   static const VerificationMeta _notesMeta = const VerificationMeta('notes');
   @override
   late final GeneratedColumn<String> notes = GeneratedColumn<String>(
@@ -648,6 +659,7 @@ class $ExercisesTable extends Exercises
     categoryId,
     image,
     defaultRestDurationMs,
+    weightStepKg,
     notes,
     graphMetric,
     graphPeriod,
@@ -715,6 +727,15 @@ class $ExercisesTable extends Exercises
         defaultRestDurationMs.isAcceptableOrUnknown(
           data['default_rest_duration_ms']!,
           _defaultRestDurationMsMeta,
+        ),
+      );
+    }
+    if (data.containsKey('weight_step_kg')) {
+      context.handle(
+        _weightStepKgMeta,
+        weightStepKg.isAcceptableOrUnknown(
+          data['weight_step_kg']!,
+          _weightStepKgMeta,
         ),
       );
     }
@@ -800,6 +821,10 @@ class $ExercisesTable extends Exercises
         DriftSqlType.int,
         data['${effectivePrefix}default_rest_duration_ms'],
       ),
+      weightStepKg: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}weight_step_kg'],
+      ),
       notes: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}notes'],
@@ -841,6 +866,7 @@ class Exercise extends DataClass implements Insertable<Exercise> {
   final int? categoryId;
   final String? image;
   final int? defaultRestDurationMs;
+  final double? weightStepKg;
   final String? notes;
   final String graphMetric;
   final String graphPeriod;
@@ -855,6 +881,7 @@ class Exercise extends DataClass implements Insertable<Exercise> {
     this.categoryId,
     this.image,
     this.defaultRestDurationMs,
+    this.weightStepKg,
     this.notes,
     required this.graphMetric,
     required this.graphPeriod,
@@ -877,6 +904,9 @@ class Exercise extends DataClass implements Insertable<Exercise> {
     }
     if (!nullToAbsent || defaultRestDurationMs != null) {
       map['default_rest_duration_ms'] = Variable<int>(defaultRestDurationMs);
+    }
+    if (!nullToAbsent || weightStepKg != null) {
+      map['weight_step_kg'] = Variable<double>(weightStepKg);
     }
     if (!nullToAbsent || notes != null) {
       map['notes'] = Variable<String>(notes);
@@ -904,6 +934,9 @@ class Exercise extends DataClass implements Insertable<Exercise> {
       defaultRestDurationMs: defaultRestDurationMs == null && nullToAbsent
           ? const Value.absent()
           : Value(defaultRestDurationMs),
+      weightStepKg: weightStepKg == null && nullToAbsent
+          ? const Value.absent()
+          : Value(weightStepKg),
       notes: notes == null && nullToAbsent
           ? const Value.absent()
           : Value(notes),
@@ -930,6 +963,7 @@ class Exercise extends DataClass implements Insertable<Exercise> {
       defaultRestDurationMs: serializer.fromJson<int?>(
         json['defaultRestDurationMs'],
       ),
+      weightStepKg: serializer.fromJson<double?>(json['weightStepKg']),
       notes: serializer.fromJson<String?>(json['notes']),
       graphMetric: serializer.fromJson<String>(json['graphMetric']),
       graphPeriod: serializer.fromJson<String>(json['graphPeriod']),
@@ -951,6 +985,7 @@ class Exercise extends DataClass implements Insertable<Exercise> {
       'categoryId': serializer.toJson<int?>(categoryId),
       'image': serializer.toJson<String?>(image),
       'defaultRestDurationMs': serializer.toJson<int?>(defaultRestDurationMs),
+      'weightStepKg': serializer.toJson<double?>(weightStepKg),
       'notes': serializer.toJson<String?>(notes),
       'graphMetric': serializer.toJson<String>(graphMetric),
       'graphPeriod': serializer.toJson<String>(graphPeriod),
@@ -968,6 +1003,7 @@ class Exercise extends DataClass implements Insertable<Exercise> {
     Value<int?> categoryId = const Value.absent(),
     Value<String?> image = const Value.absent(),
     Value<int?> defaultRestDurationMs = const Value.absent(),
+    Value<double?> weightStepKg = const Value.absent(),
     Value<String?> notes = const Value.absent(),
     String? graphMetric,
     String? graphPeriod,
@@ -984,6 +1020,7 @@ class Exercise extends DataClass implements Insertable<Exercise> {
     defaultRestDurationMs: defaultRestDurationMs.present
         ? defaultRestDurationMs.value
         : this.defaultRestDurationMs,
+    weightStepKg: weightStepKg.present ? weightStepKg.value : this.weightStepKg,
     notes: notes.present ? notes.value : this.notes,
     graphMetric: graphMetric ?? this.graphMetric,
     graphPeriod: graphPeriod ?? this.graphPeriod,
@@ -1006,6 +1043,9 @@ class Exercise extends DataClass implements Insertable<Exercise> {
       defaultRestDurationMs: data.defaultRestDurationMs.present
           ? data.defaultRestDurationMs.value
           : this.defaultRestDurationMs,
+      weightStepKg: data.weightStepKg.present
+          ? data.weightStepKg.value
+          : this.weightStepKg,
       notes: data.notes.present ? data.notes.value : this.notes,
       graphMetric: data.graphMetric.present
           ? data.graphMetric.value
@@ -1033,6 +1073,7 @@ class Exercise extends DataClass implements Insertable<Exercise> {
           ..write('categoryId: $categoryId, ')
           ..write('image: $image, ')
           ..write('defaultRestDurationMs: $defaultRestDurationMs, ')
+          ..write('weightStepKg: $weightStepKg, ')
           ..write('notes: $notes, ')
           ..write('graphMetric: $graphMetric, ')
           ..write('graphPeriod: $graphPeriod, ')
@@ -1052,6 +1093,7 @@ class Exercise extends DataClass implements Insertable<Exercise> {
     categoryId,
     image,
     defaultRestDurationMs,
+    weightStepKg,
     notes,
     graphMetric,
     graphPeriod,
@@ -1070,6 +1112,7 @@ class Exercise extends DataClass implements Insertable<Exercise> {
           other.categoryId == this.categoryId &&
           other.image == this.image &&
           other.defaultRestDurationMs == this.defaultRestDurationMs &&
+          other.weightStepKg == this.weightStepKg &&
           other.notes == this.notes &&
           other.graphMetric == this.graphMetric &&
           other.graphPeriod == this.graphPeriod &&
@@ -1086,6 +1129,7 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
   final Value<int?> categoryId;
   final Value<String?> image;
   final Value<int?> defaultRestDurationMs;
+  final Value<double?> weightStepKg;
   final Value<String?> notes;
   final Value<String> graphMetric;
   final Value<String> graphPeriod;
@@ -1100,6 +1144,7 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
     this.categoryId = const Value.absent(),
     this.image = const Value.absent(),
     this.defaultRestDurationMs = const Value.absent(),
+    this.weightStepKg = const Value.absent(),
     this.notes = const Value.absent(),
     this.graphMetric = const Value.absent(),
     this.graphPeriod = const Value.absent(),
@@ -1115,6 +1160,7 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
     this.categoryId = const Value.absent(),
     this.image = const Value.absent(),
     this.defaultRestDurationMs = const Value.absent(),
+    this.weightStepKg = const Value.absent(),
     this.notes = const Value.absent(),
     this.graphMetric = const Value.absent(),
     this.graphPeriod = const Value.absent(),
@@ -1132,6 +1178,7 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
     Expression<int>? categoryId,
     Expression<String>? image,
     Expression<int>? defaultRestDurationMs,
+    Expression<double>? weightStepKg,
     Expression<String>? notes,
     Expression<String>? graphMetric,
     Expression<String>? graphPeriod,
@@ -1148,6 +1195,7 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
       if (image != null) 'image': image,
       if (defaultRestDurationMs != null)
         'default_rest_duration_ms': defaultRestDurationMs,
+      if (weightStepKg != null) 'weight_step_kg': weightStepKg,
       if (notes != null) 'notes': notes,
       if (graphMetric != null) 'graph_metric': graphMetric,
       if (graphPeriod != null) 'graph_period': graphPeriod,
@@ -1166,6 +1214,7 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
     Value<int?>? categoryId,
     Value<String?>? image,
     Value<int?>? defaultRestDurationMs,
+    Value<double?>? weightStepKg,
     Value<String?>? notes,
     Value<String>? graphMetric,
     Value<String>? graphPeriod,
@@ -1182,6 +1231,7 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
       image: image ?? this.image,
       defaultRestDurationMs:
           defaultRestDurationMs ?? this.defaultRestDurationMs,
+      weightStepKg: weightStepKg ?? this.weightStepKg,
       notes: notes ?? this.notes,
       graphMetric: graphMetric ?? this.graphMetric,
       graphPeriod: graphPeriod ?? this.graphPeriod,
@@ -1217,6 +1267,9 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
         defaultRestDurationMs.value,
       );
     }
+    if (weightStepKg.present) {
+      map['weight_step_kg'] = Variable<double>(weightStepKg.value);
+    }
     if (notes.present) {
       map['notes'] = Variable<String>(notes.value);
     }
@@ -1250,6 +1303,7 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
           ..write('categoryId: $categoryId, ')
           ..write('image: $image, ')
           ..write('defaultRestDurationMs: $defaultRestDurationMs, ')
+          ..write('weightStepKg: $weightStepKg, ')
           ..write('notes: $notes, ')
           ..write('graphMetric: $graphMetric, ')
           ..write('graphPeriod: $graphPeriod, ')
@@ -6252,6 +6306,7 @@ typedef $$ExercisesTableCreateCompanionBuilder =
       Value<int?> categoryId,
       Value<String?> image,
       Value<int?> defaultRestDurationMs,
+      Value<double?> weightStepKg,
       Value<String?> notes,
       Value<String> graphMetric,
       Value<String> graphPeriod,
@@ -6268,6 +6323,7 @@ typedef $$ExercisesTableUpdateCompanionBuilder =
       Value<int?> categoryId,
       Value<String?> image,
       Value<int?> defaultRestDurationMs,
+      Value<double?> weightStepKg,
       Value<String?> notes,
       Value<String> graphMetric,
       Value<String> graphPeriod,
@@ -6370,6 +6426,11 @@ class $$ExercisesTableFilterComposer
 
   ColumnFilters<int> get defaultRestDurationMs => $composableBuilder(
     column: $table.defaultRestDurationMs,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get weightStepKg => $composableBuilder(
+    column: $table.weightStepKg,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -6516,6 +6577,11 @@ class $$ExercisesTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<double> get weightStepKg => $composableBuilder(
+    column: $table.weightStepKg,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<String> get notes => $composableBuilder(
     column: $table.notes,
     builder: (column) => ColumnOrderings(column),
@@ -6598,6 +6664,11 @@ class $$ExercisesTableAnnotationComposer
 
   GeneratedColumn<int> get defaultRestDurationMs => $composableBuilder(
     column: $table.defaultRestDurationMs,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<double> get weightStepKg => $composableBuilder(
+    column: $table.weightStepKg,
     builder: (column) => column,
   );
 
@@ -6740,6 +6811,7 @@ class $$ExercisesTableTableManager
                 Value<int?> categoryId = const Value.absent(),
                 Value<String?> image = const Value.absent(),
                 Value<int?> defaultRestDurationMs = const Value.absent(),
+                Value<double?> weightStepKg = const Value.absent(),
                 Value<String?> notes = const Value.absent(),
                 Value<String> graphMetric = const Value.absent(),
                 Value<String> graphPeriod = const Value.absent(),
@@ -6754,6 +6826,7 @@ class $$ExercisesTableTableManager
                 categoryId: categoryId,
                 image: image,
                 defaultRestDurationMs: defaultRestDurationMs,
+                weightStepKg: weightStepKg,
                 notes: notes,
                 graphMetric: graphMetric,
                 graphPeriod: graphPeriod,
@@ -6770,6 +6843,7 @@ class $$ExercisesTableTableManager
                 Value<int?> categoryId = const Value.absent(),
                 Value<String?> image = const Value.absent(),
                 Value<int?> defaultRestDurationMs = const Value.absent(),
+                Value<double?> weightStepKg = const Value.absent(),
                 Value<String?> notes = const Value.absent(),
                 Value<String> graphMetric = const Value.absent(),
                 Value<String> graphPeriod = const Value.absent(),
@@ -6784,6 +6858,7 @@ class $$ExercisesTableTableManager
                 categoryId: categoryId,
                 image: image,
                 defaultRestDurationMs: defaultRestDurationMs,
+                weightStepKg: weightStepKg,
                 notes: notes,
                 graphMetric: graphMetric,
                 graphPeriod: graphPeriod,

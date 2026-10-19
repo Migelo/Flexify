@@ -250,6 +250,8 @@
   "inclinePercent": "Наклон %",
   "weightWithUnit": "Вес ({unit})",
   "useBodyWeight": "Использовать вес тела",
+  "weightStep": "Шаг веса",
+  "useAutomaticWeightStep": "Использовать автоматический шаг",
   "noWeightEnteredYet": "Вес ещё не указан",
   "notesLabel": "Заметки",
   "swapWorkout": "Заменить тренировку",

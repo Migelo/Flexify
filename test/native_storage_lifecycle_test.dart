@@ -149,7 +149,7 @@ void main() {
     };
   }
 
-  Map<String, List<Map<String, Object?>>> afterGraphLimitUpgrade(
+  Map<String, List<Map<String, Object?>>> afterSchemaUpgrades(
     Map<String, List<Map<String, Object?>>> before,
   ) => {
     ...before,
@@ -160,6 +160,10 @@ void main() {
             if (entry.key != 'rep_estimation') entry.key: entry.value,
           'default_graph_limit': 30,
         },
+    ],
+    'exercises': [
+      for (final exercise in before['exercises']!)
+        {...exercise, 'weight_step_kg': null},
     ],
   };
 
@@ -263,13 +267,13 @@ Future<void> main(List<String> args) async {
       await legacy.close();
 
       final database = openPersistent();
-      expect(await snapshot(database), afterGraphLimitUpgrade(expected));
+      expect(await snapshot(database), afterSchemaUpgrades(expected));
       await expectHealthy(database);
       expect(await image.readAsBytes(), [1, 2, 3, 4]);
       await database.close();
 
       final reopened = openPersistent();
-      expect(await snapshot(reopened), afterGraphLimitUpgrade(expected));
+      expect(await snapshot(reopened), afterSchemaUpgrades(expected));
       await expectHealthy(reopened);
       final source = sqlite.sqlite3.open(
         legacyFile.path,
@@ -292,9 +296,13 @@ Future<void> main(List<String> args) async {
 
       final database = openPersistent();
       final actual = await snapshot(database);
-      for (final table in expected.keys.where((name) => name != 'settings')) {
-        expect(actual[table], expected[table], reason: table);
+      final upgraded = afterSchemaUpgrades(expected);
+      for (final table in expected.keys.where(
+        (name) => name != 'settings' && name != 'exercises',
+      )) {
+        expect(actual[table], upgraded[table], reason: table);
       }
+      expect(actual['exercises'], upgraded['exercises'], reason: 'exercises');
       final settings = await database.settings.select().getSingle();
       expect(settings.localeOverride, 'en');
       expect(settings.showImages, isTrue);
@@ -310,7 +318,7 @@ Future<void> main(List<String> args) async {
       expect(await File('${legacyFile.path}-wal').length(), greaterThan(0));
 
       final database = openPersistent();
-      expect(await snapshot(database), afterGraphLimitUpgrade(expected));
+      expect(await snapshot(database), afterSchemaUpgrades(expected));
       await expectHealthy(database);
       expect(await snapshot(legacy), expected);
     },

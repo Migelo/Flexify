@@ -731,6 +731,12 @@ class AppLocalizationsFr extends AppLocalizations {
   String get useBodyWeight => 'Utiliser le poids du corps';
 
   @override
+  String get weightStep => 'Palier de poids';
+
+  @override
+  String get useAutomaticWeightStep => 'Utiliser le palier automatique';
+
+  @override
   String get noWeightEnteredYet => 'Aucun poids n’a encore été saisi';
 
   @override
